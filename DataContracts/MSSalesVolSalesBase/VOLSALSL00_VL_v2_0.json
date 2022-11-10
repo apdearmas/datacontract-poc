@@ -1,0 +1,306 @@
+{
+  "SqlCommand": "( SELECT v.DistributorID, v.ResellerID, v.CustomerID, v.AdvisorID, v.TRCreditedSubsidiaryID, v.BillingCurrencyID, v.ProductID, v.DataSourceID, v.LicenseTransactionItemID, v.BillDocTypeID, v.ReasonID, v.BillingMonthSalesDateID, SUM(convert(FLOAT, v.ActualLicenseCnt)) AS LicenseCount, SUM(convert(FLOAT, v.ActualQuantityCnt)) AS Quantity, SUM(convert(MONEY, v.ActualRevenueAmt)) AS RevenueAmountUSD, v.SalesDateID, gl.CompanyID, v.BusinessSummaryID, v.RevSumDivisionID, v.SuperUserTypeID,v.TopParentProductID,v.BillingStatusID,v.CreditedAreaID,ar.AreaCode AS CreditedAreaCode,v.PurchaseTypeID,v.SubscriptionID FROM dbo.VOLSALSL00 v WITH (NOLOCK) \r\nINNER JOIN dbo.SalesDate sd ON sd.SalesDateId = v.SalesDateID \r\nINNER JOIN dbo.LicenseMaster lm WITH (NOLOCK) ON v.LicenseTransactionItemID = lm.LicenseTransactionItemID \r\nINNER JOIN dbo.ProductMaster pm WITH (NOLOCK) ON v.ProductID = pm.ProductID \r\nINNER JOIN dbo.GLAttributeSalesView gl WITH (NOLOCK) ON v.GLAttributeID = gl.GLAttributeID \r\nINNER JOIN dbo.Area ar WITH (NOLOCK) ON ar.AreaId = v.CreditedAreaID \r\nWHERE sd.FiscalMonthID >= 331 \r\n AND v.DataSourceID NOT IN (52, 74, 77, 78, 79, 80, 450, 451, 961, 962) \r\nAND lm.ProgramID IN (3, 10,12,13,21,23,27,30,34,39,41,42,47,51,52,64,67,74,78,79,82,90) \r\nAND Isnull(v.ActualRevenueAmt, 0) <> 0 \r\nAND v.BundleStatusID IN (1,2) \r\nAND LEFT(pm.PartNumber, 3) <> 'T2D' \r\nGROUP BY v.DistributorID,v.ResellerID,v.CustomerID,v.AdvisorID,v.TRCreditedSubsidiaryID,v.BillingCurrencyID,v.ProductID,\r\nv.DataSourceID,v.LicenseTransactionItemID,v.BillDocTypeID,v.ReasonID,v.BillingMonthSalesDateID,\r\nv.SalesDateID,gl.CompanyID,v.BusinessSummaryID,v.RevSumDivisionID,v.SuperUserTypeID,v.TopParentProductID, \r\nv.BillingStatusID,v.CreditedAreaID, ar.AreaCode, v.PurchaseTypeID,v.SubscriptionID) AS VOLSALSL00 ",
+  "SqlCommandType": 0,
+  "CommandParameters": null,
+  "DataPullType": 1,
+  "AnalyticsUnitCount": 10,
+  "ArchiveBefore": null,
+  "EntityName": "VOLSALSL00_VL_v2_0",
+  "Columns": [
+    {
+      "Name": "DistributorID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 1,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "ResellerID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 2,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "CustomerID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 3,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "AdvisorID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 4,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "TRCreditedSubsidiaryID",
+      "DataType": "tinyint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 5,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "BillingCurrencyID",
+      "DataType": "tinyint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 6,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "ProductID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 7,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "DataSourceID",
+      "DataType": "smallint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 8,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "LicenseTransactionItemID",
+      "DataType": "bigint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 9,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "BillDocTypeID",
+      "DataType": "smallint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 10,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "ReasonID",
+      "DataType": "smallint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 11,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "BillingMonthSalesDateID",
+      "DataType": "smallint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 12,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "LicenseCount",
+      "DataType": "numeric",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 13,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "Quantity",
+      "DataType": "numeric",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 14,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "RevenueAmountUSD",
+      "DataType": "numeric",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 15,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "SalesDateID",
+      "DataType": "smallint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 16,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "CompanyID",
+      "DataType": "smallint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 17,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "BusinessSummaryID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 18,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "RevSumDivisionID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 19,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "SuperUserTypeID",
+      "DataType": "tinyint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 20,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "TopParentProductID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 21,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "BillingStatusID",
+      "DataType": "tinyint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 22,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "CreditedAreaID",
+      "DataType": "tinyint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 23,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "CreditedAreaCode",
+      "DataType": "char",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 24,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "PurchaseTypeID",
+      "DataType": "tinyint",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 25,
+      "PrivacyTags": null
+    },
+    {
+      "Name": "SubscriptionID",
+      "DataType": "int",
+      "AggregationOperation": null,
+      "ColumnType": 0,
+      "IsNullable": false,
+      "IsSourceNullable": null,
+      "Position": 26,
+      "PrivacyTags": null
+    }
+  ],
+  "PrimaryKeyColumn": "DistributorID, ResellerID, CustomerID, AdvisorID, TRCreditedSubsidiaryID, BillingCurrencyID, ProductID, DataSourceID, LicenseTransactionItemID, BillDocTypeID, ReasonID, BillingMonthSalesDateID, SalesDateID, CompanyID, BusinessSummaryID, RevSumDivisionID, SuperUserTypeID, TopParentProductID, BillingStatusID, CreditedAreaID, PurchaseTypeID, SubscriptionID",
+  "Bookmark": null,
+  "Index": {
+    "Columns": [
+      "DistributorID",
+      "ResellerID",
+      "CustomerID",
+      "AdvisorID"
+    ]
+  },
+  "Partition": null,
+  "DistributionScheme": {
+    "Name": "ROUND ROBIN",
+    "Columns": [],
+    "RequiresColumnDefinition": false,
+    "DistributionCount": null
+  },
+  "EntityGroup": "MSSalesVolSalesBase",
+  "LogicalEntityName": "VOLSALSL00_VL",
+  "Name": "MSSalesVolSalesBase.VOLSALSL00_VL_v2_0",
+  "PrivacyTags": [
+    {
+      "Name": "Privacy.Asset.NonPersonal"
+    }
+  ],
+  "EnabledEnvironment": 3,
+  "EntityVersion": {
+    "Major": 2,
+    "Minor": 0,
+    "Build": 0,
+    "Revision": 0,
+    "MajorRevision": 0,
+    "MinorRevision": 0
+  },
+  "EntityPriority": 0
+}
